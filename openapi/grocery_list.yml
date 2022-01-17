@@ -1,0 +1,220 @@
+openapi: 3.0.1
+info:
+  title: Grocery-List
+  description: This is a grocery list service that creates and maintains the grocery
+    list at user level.
+  contact:
+    email: m.annamalai87@gmail.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.0
+servers:
+  - url: https://localhost:8080/grocery_list/v1
+tags:
+  - name: Grocery List
+    description: Everything about your grocery
+  - name: Grocery List Item
+    description: Add grocery item to the list
+paths:
+  /:
+    post:
+      tags:
+        - Grocery List
+      summary: Creates a new grocery list for the given user
+      requestBody:
+        description: Grocery list object that needs to be created
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroceryListCreate'
+        required: true
+      responses:
+        201:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GroceryListCreateResponse'
+        424:
+          description: Failed Dependency
+          content: {}
+      x-codegen-request-body-name: body
+  /{id}:
+    get:
+      tags:
+        - Grocery List
+      summary: Get grocery list by its id
+      description: Returns entire grocery list for the given id
+      parameters:
+        - name: id
+          in: path
+          description: Grocery list identifier
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GroceryList'
+        404:
+          description: Grocery List is not found
+          content: {}
+        424:
+          description: Failed dependency
+          content: {}
+  /grocery_list/{id}/grocery_item:
+    post:
+      tags:
+        - Grocery List Item
+      summary: Add grocery item to the grocery list
+      parameters:
+        - name: id
+          in: path
+          description: Grocery list identifier
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: grocery list item
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/GroceryListItemCreate'
+        required: true
+      responses:
+        201:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GroceryListItem'
+        404:
+          description: Grocery list not found
+          content: {}
+        424:
+          description: Failed dependency
+          content: {}
+      x-codegen-request-body-name: body
+    put:
+      tags:
+        - Grocery List Item
+      summary: Updates the grocery item
+      parameters:
+        - name: id
+          in: path
+          description: Grocery list identifier
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: grocery list item
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/GroceryListItemUpdate'
+        required: true
+      responses:
+        200:
+          description: successful update operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GroceryListItem'
+        404:
+          description: Grocery list not found
+          content: {}
+        424:
+          description: Failed dependency
+          content: {}
+      x-codegen-request-body-name: body
+    delete:
+      tags:
+        - Grocery List Item
+      summary: Delete the grocery item of the grocery list
+      parameters:
+        - name: id
+          in: path
+          description: Grocery list identifier
+          required: true
+          schema:
+            type: string
+      responses:
+        204:
+          description: Item deleted successfully
+          content: {}
+        404:
+          description: Grocery list not found
+          content: {}
+        424:
+          description: Failed dependency
+          content: {}
+components:
+  schemas:
+    GroceryListCreate:
+      required:
+        - created_by
+      type: object
+      properties:
+        created_by:
+          type: string
+    GroceryListCreateResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        created_at:
+          type: string
+        created_by:
+          type: string
+    GroceryList:
+      type: object
+      properties:
+        id:
+          type: string
+        created_at:
+          type: string
+        created_by:
+          type: string
+        grocery_items:
+          type: array
+          items:
+            $ref: '#/components/schemas/GroceryListItem'
+    GroceryListItem:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        quantity:
+          type: integer
+          format: int32
+        is_bought:
+          type: boolean
+          default: false
+    GroceryListItemCreate:
+      type: object
+      properties:
+        name:
+          type: string
+        quantity:
+          type: integer
+          format: int32
+        is_bought:
+          type: boolean
+          default: false
+    GroceryListItemUpdate:
+      type: object
+      properties:
+        name:
+          type: string
+        quantity:
+          type: integer
+          format: int32
+        is_bought:
+          type: boolean
+          default: false

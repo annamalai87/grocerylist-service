@@ -1,0 +1,204 @@
+_type: export
+__export_format: 4
+__export_date: 2022-01-17T19:28:43.791Z
+__export_source: insomnia.desktop.app:v2021.7.2
+resources:
+  - _id: req_2dfa81a0d8a5492aa7a3d35d930fe836
+    parentId: wrk_159be72861b44b24b80fc7312529b230
+    modified: 1642443533671
+    created: 1642295996101
+    url: http://localhost:8080/grocery_list/v1
+    name: Create grocery list
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"created_by" : "Annamalai.Muthalagappan1"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_f26811f94c84460abd12a1994702908f
+    authentication: {}
+    metaSortKey: -1642441441793
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: wrk_159be72861b44b24b80fc7312529b230
+    parentId: null
+    modified: 1642295984277
+    created: 1642295984277
+    name: GroceryList
+    description: ""
+    scope: collection
+    _type: workspace
+  - _id: req_28d17b6f49ec4e648886683c984931f9
+    parentId: wrk_159be72861b44b24b80fc7312529b230
+    modified: 1642442344794
+    created: 1642376366898
+    url: http://localhost:8080/grocery_list/v1/{% response 'body',
+      'req_2dfa81a0d8a5492aa7a3d35d930fe836', 'b64::JC5pZA==::46b', 'never', 60
+      %}/grocery_item
+    name: Add grocery item
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"name": "Onion",
+        	"quantity": 5,
+        	"is_bought": false
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_eda11ce7b28e4cf393cc1ca7a61fe760
+    authentication: {}
+    metaSortKey: -1642441441768
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_e0a1f846c4a14c0d814e203f37f262d0
+    parentId: wrk_159be72861b44b24b80fc7312529b230
+    modified: 1642442348811
+    created: 1642385861061
+    url: http://localhost:8080/grocery_list/v1/{% response 'body',
+      'req_2dfa81a0d8a5492aa7a3d35d930fe836', 'b64::JC5pZA==::46b', 'never', 60
+      %}/grocery_item
+    name: Update grocery item
+    description: ""
+    method: PUT
+    body:
+      mimeType: application/json
+      text: >-
+        {
+        	"id": {% response 'body', 'req_28d17b6f49ec4e648886683c984931f9', 'b64::JC5pZA==::46b', 'never', 60 %},
+        	"name": "Onion",
+        	"quantity": 5,
+        	"is_bought": true
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_d925c2d758bd43ce93551cb0c345d8a3
+    authentication: {}
+    metaSortKey: -1642441441755.5
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_9ecc0d8ee01f4aacad23071b0202c175
+    parentId: wrk_159be72861b44b24b80fc7312529b230
+    modified: 1642442334390
+    created: 1642387713284
+    url: http://localhost:8080/grocery_list/v1/{% response 'body',
+      'req_2dfa81a0d8a5492aa7a3d35d930fe836', 'b64::JC5pZA==::46b', 'never', 60
+      %}/grocery_item/{% response 'body',
+      'req_28d17b6f49ec4e648886683c984931f9', 'b64::JC5pZA==::46b', 'never', 60
+      %}
+    name: Delete grocery item
+    description: ""
+    method: DELETE
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1642441441749.25
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_7acb978b9f364fa1b4f49ae26cd0c88e
+    parentId: wrk_159be72861b44b24b80fc7312529b230
+    modified: 1642441478156
+    created: 1642441441743
+    url: http://localhost:8080/grocery_list/v1/{% response 'body',
+      'req_2dfa81a0d8a5492aa7a3d35d930fe836', 'b64::JC5pZA==::46b', 'never', 60
+      %}
+    name: Get grocery list
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1642441441743
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_4767ce701c794cae9c9bb7236da51592
+    parentId: wrk_159be72861b44b24b80fc7312529b230
+    modified: 1642432940248
+    created: 1642432922203
+    url: http://localhost:8080/grocery_list/v1/actuator/health
+    name: Health check
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1642432922203
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: env_0a29c21ba1e0db17023e26e3d88b458e6f9edbd4
+    parentId: wrk_159be72861b44b24b80fc7312529b230
+    modified: 1642295984285
+    created: 1642295984285
+    name: Base Environment
+    data: {}
+    dataPropertyOrder: null
+    color: null
+    isPrivate: false
+    metaSortKey: 1642295984285
+    _type: environment
+  - _id: jar_0a29c21ba1e0db17023e26e3d88b458e6f9edbd4
+    parentId: wrk_159be72861b44b24b80fc7312529b230
+    modified: 1642295984287
+    created: 1642295984287
+    name: Default Jar
+    cookies: []
+    _type: cookie_jar
+  - _id: spc_f87e08632f3a494881ff8cae85ab434b
+    parentId: wrk_159be72861b44b24b80fc7312529b230
+    modified: 1642295984281
+    created: 1642295984281
+    fileName: GroceryList
+    contents: ""
+    contentType: yaml
+    _type: api_spec
